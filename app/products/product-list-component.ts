@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IProduct } from "./product";
+import { ProductService } from "./products.service";
 
 
 @Component({
@@ -11,23 +12,20 @@ import { IProduct } from "./product";
 
 
 export class ProductListComponent {
-
-    
     pageTitle: string = 'Product List';
     showImage: boolean;
     imageurl: String = '../images/angularconnect-shield.png';
     filterProducts: IProduct[];
     _listFilter:string='cart';
 
-    private _productService;
-constructor(products:IProduct[]){
-    this.filterProducts = products;
-}
+    
 
 
-constructor(products:IProduct[]){
-    this.filterProducts = products;
+constructor(private _productService:ProductService) {
+    this.filterProducts = this.products;
 }
+
+products: IProduct[]=this._productService.getProducts();
     toggelImage(): void {
         this.showImage = !this.showImage;
 
@@ -50,7 +48,7 @@ constructor(products:IProduct[]){
     }
 
 
-    products: IProduct[] = [
+  /*  products: IProduct[] = [
         {
             "productId": 2,
             "productName": "Garden Cart",
@@ -70,8 +68,8 @@ constructor(products:IProduct[]){
             "price": 8.9,
             "starRating": 4.8,
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
-        }
-    ];
+        } 
+    ];*/
 
     
 }

@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ProductService } from "./products/products.service";
 
 
 @Component({
@@ -11,8 +12,8 @@ import { Component } from "@angular/core";
     </div>
     <div>
     </div>
-    `,
-   providers:[]
+    `
+  
     
 })
 export class AppComponent{
