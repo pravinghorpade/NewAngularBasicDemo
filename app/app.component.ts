@@ -11,8 +11,8 @@ import { Component } from "@angular/core";
     </div>
     <div>
     </div>
-    `
-   
+    `,
+   providers:[]
     
 })
 export class AppComponent{

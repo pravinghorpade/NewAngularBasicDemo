@@ -11,27 +11,43 @@ import { IProduct } from "./product";
 
 
 export class ProductListComponent {
+
+    
     pageTitle: string = 'Product List';
     showImage: boolean;
     imageurl: String = '../images/angularconnect-shield.png';
-    filterProducts: String;
-    _listFilter:String='cart';
+    filterProducts: IProduct[];
+    _listFilter:string='cart';
 
+    private _productService;
+constructor(products:IProduct[]){
+    this.filterProducts = products;
+}
+
+
+constructor(products:IProduct[]){
+    this.filterProducts = products;
+}
     toggelImage(): void {
         this.showImage = !this.showImage;
 
     }
 
-    get listFilter(): String{
+    get listFilter(): string{
         return this._listFilter;
     }
 
-    set listFilter(value:String){
+    set listFilter(value:string){
         this._listFilter=value;
+       this.filterProducts= this.performFilter(value)
         console.log(value);
     }
 
-
+    performFilter(filterBy: string): IProduct[] {
+        filterBy = filterBy.toLocaleLowerCase();
+        return this.products.filter((product: IProduct) =>
+              product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    }
 
 
     products: IProduct[] = [
@@ -56,6 +72,8 @@ export class ProductListComponent {
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
         }
     ];
+
+    
 }
 
 
