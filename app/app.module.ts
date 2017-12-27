@@ -4,11 +4,12 @@ import { AppComponent } from "./app.component";
 import { ProductListComponent } from "./products/product-list-component";
 import { FormsModule } from "@angular/forms"
 import { ProductService } from "./products/products.service";
+import { HttpClientModule } from '@angular/common/http';
 
 
 
 @NgModule({
-    imports:[BrowserModule,FormsModule],
+    imports:[BrowserModule,FormsModule,HttpClientModule],
     declarations:[AppComponent,ProductListComponent],
     bootstrap:[AppComponent],
     providers: [ProductService]

@@ -15,8 +15,10 @@ export class ProductListComponent {
     pageTitle: string = 'Product List';
     showImage: boolean;
     imageurl: String = '../images/angularconnect-shield.png';
+    products: IProduct[];
     filterProducts: IProduct[];
     _listFilter:string='cart';
+    errorMessage:String;
 
     
 
@@ -25,7 +27,13 @@ constructor(private _productService:ProductService) {
     this.filterProducts = this.products;
 }
 
-products: IProduct[]=this._productService.getProducts();
+ngOnInit(): void {
+    this._productService.getProducts().subscribe(products => this.products= products,
+    error => this.errorMessage= <any>error);
+      this.filterProducts = this.products;
+}
+/*products: IProduct[]=this._productService.getProducts(); */
+
     toggelImage(): void {
         this.showImage = !this.showImage;
 
